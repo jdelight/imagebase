@@ -1,2 +1,4 @@
 Django==1.6.1
 wsgiref==0.1.2
+South==0.8.4
+psycopg2==2.5.1
