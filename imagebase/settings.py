@@ -41,7 +41,7 @@ INSTALLED_APPS = (
     # Local Apps
     'ft',
     'core',
-    # 'upload',
+    'upload',
     # 'browse',
     # 'categories',
     # 'tags',
