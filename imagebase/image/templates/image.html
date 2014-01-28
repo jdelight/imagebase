@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load thumbnail bootstrap3 %}
+
+{% block main %}
+    {% bootstrap_messages %}
+
+    <h3 class="heading">{{ image.title }}</h3>
+    <p>
+    {% thumbnail image.image "300" crop="center" as im %}
+        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="" class=""/>
+    {% endthumbnail %}
+    </p>
+        <a href="{% url 'image_update' image.id %}" class="label label-primary">edit image</a>
+
+    <h4>Tags</h4>
+    <p>
+    {% for tag in image.tags.all %}
+        <a href="{% url 'image_tag_list' slug=tag %}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+    </p>
+
+    <hr/>
+
+
+    <h4>Related: <strong>by tag</strong></h4>
+    <div class="row">
+    {% for image in related_images  %}
+        <div class="col-sm-2">
+            {% thumbnail image.image '100x100' crop='center' as im %}
+                <a href="{% url 'image' pk=image.id  %}" class="thumbnail"><img src="{{ im.url }}" alt=""/></a>
+            {% endthumbnail %}
+        </div>
+        {% empty %}
+        <div class="col-sm-12">
+            <p>There are currently no related images.</p>
+        </div>
+    {% endfor %}
+    </div>
+
+
+{% endblock %}

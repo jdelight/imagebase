@@ -1,7 +1,7 @@
 from django.test import TestCase, RequestFactory, Client
 from django.core.urlresolvers import resolve
 
-from ft.utils import setup_view
+from core.utils import setup_view
 
 from core.views import DashboardView
 
@@ -15,6 +15,7 @@ class DashboardViewTest(TestCase):
         dashboard_request = RequestFactory().get('/')
         dashboard_view = DashboardView()
         view = setup_view(dashboard_view, dashboard_request)
+        dashboard_view.object_list = []
         template_names = view.get_template_names()
         self.assertEqual(template_names, ['dashboard.html'])
 

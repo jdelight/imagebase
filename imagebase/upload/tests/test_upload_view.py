@@ -1,7 +1,8 @@
 from django.test import TestCase, RequestFactory, Client
 from django.core.urlresolvers import resolve
 
-from ft.utils import setup_view
+from core.utils import setup_view
+from image.models import Image
 
 from upload.views import UploadView
 
@@ -32,3 +33,13 @@ class UploadViewTest(TestCase):
         client = Client()
         response = client.get('/upload/')
         self.assertContains(response, 'Imagebase: Upload')
+
+    def test_upload_view_success_url_returns_image_model_url(self):
+        image = Image.objects.create(title='title', image='image.jpg')
+        upload_request = RequestFactory().get('/foo')
+        upload_view = UploadView()
+        upload_view.object = image
+        view = setup_view(upload_view, upload_request)
+        self.assertEqual(view.get_success_url(), image.get_absolute_url())
+
+

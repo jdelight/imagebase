@@ -1,5 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import ListView
 
-class DashboardView(TemplateView):
+from image.models import Image
+
+class DashboardView(ListView):
     template_name = 'dashboard.html'
+    model = Image

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load thumbnail bootstrap3 %}
+
+{% block main %}
+    {% bootstrap_messages %}
+
+    <h3 class="heading">Edit Image{% if image.title %}: <strong>{{ image.title }}</strong>{% endif %}</h3>
+
+    {% thumbnail image.image "150" crop="center" as im %}
+        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="" class="main_image"/>
+    {% endthumbnail %}
+
+    <form action="" role='form' method="post" class="update_form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">Update</button>
+        {% endbuttons %}
+    </form>
+
+{% endblock %}

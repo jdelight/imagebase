@@ -1,3 +1,18 @@
 {% extends 'base.html' %}
 
 {% block pagetitle %}Upload{% endblock %}
+
+
+{% block main %}
+    <h2>Upload image</h2>
+    <form action="" role="form" method="post" class="upload_form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+            </div>
+        {% endfor %}
+        <input type="submit" value="Upload" class="btn btn-primary"/>
+    </form>
+{% endblock %}
