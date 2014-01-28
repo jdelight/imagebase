@@ -8,7 +8,7 @@ class ImagebaseLiveServerTestCase(LiveServerTestCase):
 
     @classmethod
     def setUpClass(self):
-        self.browser = webdriver.PhantomJS()
+        self.browser = webdriver.Firefox()
         super(ImagebaseLiveServerTestCase, self).setUpClass()
 
     @classmethod

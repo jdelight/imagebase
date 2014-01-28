@@ -7,7 +7,7 @@
     <h3 class="heading">{{ image.title }}</h3>
     <p>
     {% thumbnail image.image "300" crop="center" as im %}
-        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="" class=""/>
+        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="" class="main_image_large"/>
     {% endthumbnail %}
     </p>
         <a href="{% url 'image_update' image.id %}" class="label label-primary">edit image</a>
