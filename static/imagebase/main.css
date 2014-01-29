@@ -1,0 +1,33 @@
+
+.main_image {
+    margin-bottom: 20px;
+}
+
+.image-block {
+    position: relative;    
+}
+
+.image-block label {
+    cursor: pointer;
+}
+
+.image-block span {
+    position: absolute;
+    z-index: 100;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    padding: 4px 10px;
+    /*opacity: 0;*/
+    /*-webkit-transition: opacity 0.3s;*/
+    /*-moz-transition: opacity 0.3s;*/
+    /*-ms-transition: opacity 0.3s;*/
+    /*-o-transition: opacity 0.3s;*/
+    /*transition: opacity 0.3s;*/
+}
+
+.image-block:hover span {
+    opacity: 1;
+}

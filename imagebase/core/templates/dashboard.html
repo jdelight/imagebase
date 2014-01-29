@@ -12,7 +12,7 @@
             {% thumbnail image.image '180x180' crop='center' as im %}
                 <a href="{% url 'image' pk=image.id  %}" class="thumbnail"><img src="{{ im.url }}" alt=""/></a>
             {% endthumbnail %}
-            <span>{{ image.title }}</span>
+            <span><label><input type="checkbox"/> {{ image.title }}</label></span>
             </div>
             </div>
         {% endfor %}
