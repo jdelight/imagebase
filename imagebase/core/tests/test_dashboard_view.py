@@ -28,3 +28,8 @@ class DashboardViewTest(TestCase):
         client = Client()
         response = client.get('/')
         self.assertTemplateUsed(response, 'base.html')
+
+    def test_dashboard_view_with_no_images(self):
+        client = Client()
+        response = client.get('/')
+        self.assertContains(response, 'Upload an image')

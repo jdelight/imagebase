@@ -1,3 +1,5 @@
+import datetime
+
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 
@@ -6,9 +8,9 @@ from image.models import Image
 class ImageModelTest(TestCase):
     def test_image_model(self):
         image = Image.objects.create(title='my image', image='my_image.jpg')
-        self.assertEqual(image.title, 'my image')
-        self.assertEqual(image.image, 'my_image.jpg')
-        self.assertEqual(str(image), 'my image')
+        self.assertEqual('my image', image.title)
+        self.assertEqual('my_image.jpg', image.image)
+        self.assertEqual('my image', str(image))
 
     def test_image_get_absolute_url(self):
         image = Image.objects.create(title='my image', image='my_image.jpg')

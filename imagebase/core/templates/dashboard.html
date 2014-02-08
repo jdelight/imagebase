@@ -15,6 +15,10 @@
             <span><label><input type="checkbox"/> {{ image.title }}</label></span>
             </div>
             </div>
+            {% empty %}
+            <div class="col-md-12">
+                <p><a href="{% url 'upload' %}">Upload an image</a></p>
+            </div>
         {% endfor %}
     </div>
 {% endblock %}

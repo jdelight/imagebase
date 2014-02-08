@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load bootstrap3 %}
 
 {% block pagetitle %}Upload{% endblock %}
 
@@ -7,12 +8,7 @@
     <h2>Upload image</h2>
     <form action="" role="form" method="post" class="upload_form" enctype="multipart/form-data">
         {% csrf_token %}
-        {% for field in form %}
-            <div class="form-group">
-                {{ field.errors }}
-                {{ field.label_tag }} {{ field }}
-            </div>
-        {% endfor %}
-        <input type="submit" value="Upload" class="btn btn-primary"/>
+        {% bootstrap_form form %}
+        <input type="submit" value="Upload" class="btn btn-primary"/> <a href="{% url 'dashboard' %}">Cancel</a>
     </form>
 {% endblock %}

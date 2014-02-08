@@ -35,3 +35,15 @@ class ImageViewTest(TestCase):
         client = Client()
         response = client.get(resolve_url(image))
         self.assertEqual(response.context['image'], image)
+
+    def test_image_edit_view(self):
+        image = Image.objects.create(title='my image', image='my_image.jpg')
+        client = Client()
+        response = client.get(resolve_url('image_update', pk=image.id))
+        self.assertEqual(response.context['image'], image)
+
+    def test_image_delete_view(self):
+        image = Image.objects.create(title='my image', image='my_image.jpg')
+        client = Client()
+        response = client.get(resolve_url('image_delete', pk=image.id))
+        self.assertEqual(response.context['image'], image)

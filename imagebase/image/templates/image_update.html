@@ -14,7 +14,7 @@
         {% csrf_token %}
         {% bootstrap_form form %}
         {% buttons %}
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-primary">Update</button> <a href="{% url 'image' pk=image.id %}">Cancel</a>
         {% endbuttons %}
     </form>
 

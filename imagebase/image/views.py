@@ -1,9 +1,11 @@
 from django.contrib import messages
-from django.views.generic import UpdateView, ListView, DetailView
+from django.views.generic import UpdateView, ListView, DetailView, DeleteView
+from django.core.urlresolvers import reverse_lazy
 
 from taggit.models import Tag
 
 from .models import Image
+from .forms import ImageDeleteForm
 
 class ImageView(DetailView):
     template_name = 'image.html'
@@ -24,6 +26,20 @@ class ImageUpdateView(UpdateView):
         messages.add_message(self.request, messages.SUCCESS, 'Image updated successfully')
         return super(ImageUpdateView, self).form_valid(form)
 
+
+class ImageDeleteView(DeleteView):
+    template_name = 'image_delete.html'
+    model = Image
+    success_url = reverse_lazy('dashboard')
+
+    def get_context_data(self, **kwargs):
+        context = super(ImageDeleteView, self).get_context_data(**kwargs)
+        context['form'] = ImageDeleteForm
+        return context
+
+    def form_valid(self, form):
+        messages.add_message(self.request, messages.SUCCESS, 'Image deleted successfully')
+        return super(ImageUpdateView, self).form_valid(form)
 
 class ImageTagView(ListView):
     template_name = 'tags.html'

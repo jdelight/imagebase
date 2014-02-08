@@ -19,7 +19,7 @@
     right: 5px;
     background: rgba(0,0,0,0.6);
     color: #fff;
-    padding: 4px 10px;
+    /*padding: 4px 10px;*/
     /*opacity: 0;*/
     /*-webkit-transition: opacity 0.3s;*/
     /*-moz-transition: opacity 0.3s;*/
@@ -28,6 +28,12 @@
     /*transition: opacity 0.3s;*/
 }
 
+.image-block span a {
+    display: block;
+    width: 200px;
+    height: 200px;
+}
+
 .image-block:hover span {
-    opacity: 1;
+    /*opacity: 1;*/
 }
