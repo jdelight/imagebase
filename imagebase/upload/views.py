@@ -6,7 +6,7 @@ from image.models import Image
 class UploadView(CreateView):
     template_name = 'upload.html'
     model = Image
-    fields = ['image', 'title', 'tags']
+    fields = ['image']
 
     def form_valid(self, form):
         messages.add_message(self.request, messages.SUCCESS, 'Image uploaded successfully')
