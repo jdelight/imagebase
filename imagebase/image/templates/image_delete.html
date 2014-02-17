@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load thumbnail bootstrap3 %}
+
+{% block main %}
+
+    <h3 class="heading">Delete Image{% if image.title %}: <strong>{{ image.title }}</strong>{% endif %}</h3>
+
+    {% thumbnail image.image "150" crop="center" as im %}
+        <figure class="main_image_container">
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="" class="main_image"/>
+        </figure>
+    {% endthumbnail %}
+
+    <form action="" role='form' method="post" class="delete_form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+            <a href="{% url 'image' pk=image.id %}">Cancel</a>
+        {% endbuttons %}
+    </form>
+
+{% endblock %}

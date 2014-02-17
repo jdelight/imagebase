@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block pagetitle %}Settings{% endblock %}
+
+{% block main %}
+    <form action="" method="post" id="settings_form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" value="Submit"/>
+    </form>
+{% endblock %}
