@@ -2,12 +2,13 @@
 {% load thumbnail bootstrap3 %}
 
 {% block main %}
-    {% bootstrap_messages %}
 
     <h3 class="heading">Edit Image{% if image.title %}: <strong>{{ image.title }}</strong>{% endif %}</h3>
 
     {% thumbnail image.image "150" crop="center" as im %}
-        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="" class="main_image"/>
+        <figure class="main_image_container">
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="" class="main_image"/>
+        </figure>
     {% endthumbnail %}
 
     <form action="" role='form' method="post" class="update_form" enctype="multipart/form-data">

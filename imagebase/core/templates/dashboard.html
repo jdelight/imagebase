@@ -8,12 +8,24 @@
     <div class="row">
         {% for image in image_list %}
             <div class="col-xs-6 col-md-3">
-            <div class="image-block">
-            {% thumbnail image.image '180x180' crop='center' as im %}
-                <a href="{% url 'image' pk=image.id  %}" class="thumbnail"><img src="{{ im.url }}" alt=""/></a>
-            {% endthumbnail %}
-            <span><label><input type="checkbox"/> {{ image.title }}</label></span>
-            </div>
+                <figure class="image-block">
+                {% thumbnail image.image '280x200' crop='center' as im %}
+                    <a href="{% url 'image' pk=image.id  %}" class="thumbnail"><img src="{{ im.url }}" alt=""/></a>
+                {% endthumbnail %}
+                <span>
+                    <ul id="image_{{ image.id }}_attributes">
+                        {% if imagebase_settings.show_id %}
+                            <li class="attr_id">id: {{ image.id }}</li>
+                        {% endif %}
+                        {% if imagebase_settings.show_title %}
+                            <li class="attr_title">title: {{ image.title }}</li>
+                        {% endif %}
+                        {% if imagebase_settings.show_tags %}
+                            <li class="attr_tags">tags: {{ image.tags.names|join:' ' }}</li>
+                        {% endif %}
+                    </ul>
+                </span>
+                </figure>
             </div>
             {% empty %}
             <div class="col-md-12">

@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'core',
     'upload',
     'image',
+    'prefs',
     # 'browse',
     # 'categories',
     # 'tags',

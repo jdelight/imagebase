@@ -9,6 +9,7 @@ admin.autodiscover()
 from core.views import DashboardView
 from upload.views import UploadView
 from image.views import ImageView, ImageTagView, ImageUpdateView, ImageDeleteView
+from prefs.views import SettingsView
 
 urlpatterns = patterns('',
     # Examples:
@@ -22,6 +23,7 @@ urlpatterns = patterns('',
     url(r'^image/(?P<pk>\d+)/delete/$', ImageDeleteView.as_view(), name='image_delete'),
     url(r'^tags/$', ImageTagView.as_view(), name='image_tag'),
     url(r'^tags/(?P<slug>[\w\-]+)/$', ImageTagView.as_view(), name='image_tag_list'),
+    url(r'^settings/(?P<pk>\d+)/$', SettingsView.as_view(), name='setting'),
 
     url(r'^admin/', include(admin.site.urls)),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
