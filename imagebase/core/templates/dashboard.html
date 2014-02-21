@@ -11,7 +11,7 @@
             <div class="col-md-6">
                 <figure class="image-block">
                 {% thumbnail image.image '280x200' crop='center' as im %}
-                    <a href="{% url 'image' pk=image.id  %}" class="thumbnail"><img src="{{ im.url }}" alt=""/></a>
+                    <a href="{% url 'image' pk=image.id  %}" data-internal class="thumbnail"><img src="{{ im.url }}" alt=""/></a>
                 {% endthumbnail %}
                 <span>
                     <ul id="image_{{ image.id }}_attributes">
