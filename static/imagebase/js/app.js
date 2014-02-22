@@ -5,7 +5,9 @@ var ImagebaseRouter = Backbone.Router.extend({
     },
 
     'viewImageDetail': function(id){
-        console.log('load image %s:',id);
+        var imageContentUrl = '/image/' + id + '/content/';
+        console.log('load image %s:',id, imageContentUrl);
+        $('#image-detail-container').load(imageContentUrl);
     }
 
 });
@@ -25,34 +27,3 @@ $(function(){
     Backbone.history.start({pushState: true});
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-$(document).foundation();
