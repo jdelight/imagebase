@@ -7,7 +7,7 @@
     <h2>Dashboard</h2>
 
     <div class="row">
-        <div class="medium-8 columns">
+        <div class="medium-12 columns" id="image-master-container">
             <ul class="small-block-grid-2 medium-block-grid-3 image-grid">
                 {% for image in image_list %}
                     <li>
@@ -17,6 +17,7 @@
                                 <img src="{{ im.url }}" alt=""/>
 
                         {% endthumbnail %}
+
                         <div class="panel">
                             <ul id="image_{{ image.id }}_attributes" class="no-bullet image-attributes">
                                 {% if imagebase_settings.show_id %}
