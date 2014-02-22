@@ -5,10 +5,8 @@
 
     <h2>{% if tag_slug %}Images tagged with: <strong>{{ tag_slug }}</strong>{% else %}Tags{% endif %}</h2>
 
-    <div class="row">
-        <div class="col-xs-3">
             {% if object_list %}
-            <ul class="">
+            <ul class="inline-list">
                 {% for tag_object in object_list %}
                     <li class="{% if tag_object.slug == tag_slug %}active{% else %}{% endif %}"><a href="{% url 'image_tag_list' slug=tag_object.slug %}" class="class="label label-{% if tag_object.slug == tag_slug %}primary{% else %}info{% endif %}"">{{ tag_object.name }}</a></li>
                 {% endfor %}
@@ -17,18 +15,14 @@
                 <p>There are no tags yet</p>
             {% endif %}
 
-        </div>
-        <div class="col-xs-9">
+            <ul class="small-block-grid-4">
             {% for image in images %}
-                <div class="col-xs-6 col-md-3">
-                    {% thumbnail image.image '180x180' crop='center' as im %}
+                <li>
+                    {% thumbnail image.image '320x240' crop='center' as im %}
                         <a href="{% url 'image' pk=image.id  %}" class="thumbnail"><img src="{{ im.url }}" alt=""/></a></li>
                     {% endthumbnail %}
-                </div>
+                </li>
             {% endfor %}
-
-        </div>
-    </div>
-
+            </ul>
 
 {% endblock %}
