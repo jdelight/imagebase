@@ -10,6 +10,8 @@
         .panel {
             background-color: #f3f3f3;
             border: none;
+            padding-top: 4px;
+            padding-bottom: 8px;
         }
     }
 }
@@ -18,7 +20,7 @@
 
     li {
         color: #333;
-        font-size: rem-calc(12);
+        font-size: rem-calc(14);
     }
 
     small {
