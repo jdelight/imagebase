@@ -7,7 +7,9 @@ var ImagebaseRouter = Backbone.Router.extend({
     'viewImageDetail': function(id){
         var imageContentUrl = '/image/' + id + '/content/';
         console.log('load image %s:',id, imageContentUrl);
-        $('#image-detail-container').load(imageContentUrl);
+        $('#image-detail-container').load(imageContentUrl, null, function(){
+            $('#image-master-container').removeClass('medium-12').addClass('medium-8');
+        });
     }
 
 });
