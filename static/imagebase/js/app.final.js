@@ -15,7 +15,7 @@ $(function(){
 
     var imagebaseRouter = new ImagebaseRouter();
 
-    $('a[data-pjax]').on('click', function(e){
+    $('a[data-internal]').on('click', function(e){
         e.preventDefault();
         e.stopPropagation();
         console.log('e.currentTarget.pathname:', e.currentTarget.pathname);

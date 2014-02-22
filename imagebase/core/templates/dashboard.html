@@ -11,7 +11,7 @@
             <ul class="small-block-grid-2 medium-block-grid-3 image-grid">
                 {% for image in image_list %}
                     <li>
-                        <a href="{% url 'image' pk=image.id %}" data-internal class="thumbnail">
+                        <a href="{% url 'image' pk=image.id %}" data-pjax class="thumbnail">
                         {% thumbnail image.image '320x240' crop='center' as im %}
 
                                 <img src="{{ im.url }}" alt=""/>
