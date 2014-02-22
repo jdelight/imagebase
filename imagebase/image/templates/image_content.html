@@ -21,16 +21,16 @@
 <hr/>
 
 <h4>Related: <strong>by tag</strong></h4>
-<ul class="small-block-grid-6">
-    {% for image in related_images %}
-        <li>
-            {% thumbnail image.image '100x100' crop='center' as im %}
-                <a href="{% url 'image' pk=image.id %}" class="thumbnail"><img src="{{ im.url }}" alt=""/></a>
-            {% endthumbnail %}
-        </li>
-    {% empty %}
-        <li>
-            <p>There are currently no related images.</p>
-        </li>
-    {% endfor %}
-</ul>
+{% if related_images %}
+    <ul class="small-block-grid-4">
+        {% for image in related_images %}
+            <li>
+                {% thumbnail image.image '100x100' crop='center' as im %}
+                    <a href="{% url 'image' pk=image.id %}" class="thumbnail"><img src="{{ im.url }}" alt=""/></a>
+                {% endthumbnail %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>There are currently no related images.</p>
+{% endif %}
