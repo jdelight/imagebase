@@ -5,7 +5,11 @@ var ImagebaseRouter = Backbone.Router.extend({
     },
 
     'viewImageDetail': function(id){
-        console.log('load image %s:',id);
+        var imageContentUrl = '/image/' + id + '/content/';
+        console.log('load image %s:',id, imageContentUrl);
+        $('#image-detail-container').load(imageContentUrl, null, function(){
+            $('#image-master-container').removeClass('medium-12').addClass('medium-8');
+        });
     }
 
 });
@@ -15,7 +19,7 @@ $(function(){
 
     var imagebaseRouter = new ImagebaseRouter();
 
-    $('a[data-internal]').on('click', function(e){
+    $('a[data-pjax]').on('click', function(e){
         e.preventDefault();
         e.stopPropagation();
         console.log('e.currentTarget.pathname:', e.currentTarget.pathname);
@@ -25,34 +29,3 @@ $(function(){
     Backbone.history.start({pushState: true});
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-$(document).foundation();
