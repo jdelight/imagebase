@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load thumbnail bootstrap3 %}
+{% load thumbnail %}
 
 {% block main %}
 
@@ -13,7 +13,7 @@
 
     <form action="" role='form' method="post" class="update_form" enctype="multipart/form-data">
         {% csrf_token %}
-        {% bootstrap_form form %}
+        {{ form }}
         {% buttons %}
             <button type="submit" class="btn btn-primary">Update</button> <a href="{% url 'image' pk=image.id %}">Cancel</a>
         {% endbuttons %}

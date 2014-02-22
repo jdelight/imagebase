@@ -1,9 +1,8 @@
-{% load staticfiles bootstrap3 %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Imagebase: {% block pagetitle %}{% endblock %}</title>
-    {% bootstrap_css %}
     <link rel="stylesheet" href="{% static 'imagebase/main.css' %}"/>
 </head>
 <body>
@@ -35,8 +34,6 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                {% bootstrap_messages %}
-
                 <main>
                     {% block main %}{% endblock %}
                 </main>
@@ -44,11 +41,8 @@
         </div>
     </div>
     <script src="{% static 'imagebase/js/jquery.js' %}"></script>
-    {% bootstrap_javascript %}
     <script src="{% static 'imagebase/js/underscore.js' %}"></script>
     <script src="{% static 'imagebase/js/backbone.js' %}"></script>
     <script src="{% static 'imagebase/js/imagebase.js' %}"></script>
-
-
 </body>
 </html>

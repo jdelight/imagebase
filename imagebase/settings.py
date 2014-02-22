@@ -39,7 +39,6 @@ INSTALLED_APPS = (
 
     'taggit',
     'sorl.thumbnail',
-    'bootstrap3',
     'south',
 
     # Local Apps

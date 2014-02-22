@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load thumbnail bootstrap3 %}
+{% load thumbnail %}
 
 {% block main %}
 
@@ -13,7 +13,7 @@
 
     <form action="" role='form' method="post" class="delete_form">
         {% csrf_token %}
-        {% bootstrap_form form %}
+        {{ form }}
         {% buttons %}
             <button type="submit" class="btn btn-danger">Confirm Delete</button>
             <a href="{% url 'image' pk=image.id %}">Cancel</a>
