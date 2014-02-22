@@ -3,21 +3,24 @@
 
 {% block main %}
 
-    <h3 class="heading">Delete Image{% if image.title %}: <strong>{{ image.title }}</strong>{% endif %}</h3>
+    <h2 class="heading">Delete Image{% if image.title %}: <strong>{{ image.title }}</strong>{% endif %}</h2>
 
     {% thumbnail image.image "150" crop="center" as im %}
-        <figure class="main_image_container">
+        <div class="main_image_container">
             <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="" class="main_image"/>
-        </figure>
+        </div>
     {% endthumbnail %}
 
-    <form action="" role='form' method="post" class="delete_form">
-        {% csrf_token %}
-        {{ form }}
-        {% buttons %}
-            <button type="submit" class="btn btn-danger">Confirm Delete</button>
-            <a href="{% url 'image' pk=image.id %}">Cancel</a>
-        {% endbuttons %}
-    </form>
+    <div class="row">
+        <div class="medium-6 columns">
+            <form action="" role='form' method="post" class="delete_form">
+                {% csrf_token %}
+                {{ form }}
+                <hr/>
+                <button type="submit" class="">Confirm Delete</button>
+                <a href="{% url 'image' pk=image.id %}">Cancel</a>
+            </form>
+        </div>
+    </div>
 
 {% endblock %}

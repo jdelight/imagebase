@@ -1,14 +1,15 @@
 {% load thumbnail %}
 
-<h3 class="heading">{{ image.title }}</h3>
+<h2 class="heading">{{ image.title }}</h2>
 <p>
     {% thumbnail image.image "300" crop="center" as im %}
-        <figure class="main_image_large_container">
-            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="" class="main_image_large" />
-        </figure>
+        <div class="main_image_large_container">
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="" class="main_image_large"/>
+        </div>
     {% endthumbnail %}
 </p>
-<a href="{% url 'image_update' image.id %}" class="label label-primary">edit image</a> <a href="{% url 'image_delete' image.id %}" class="label label-danger">delete image</a>
+<a href="{% url 'image_update' image.id %}" class="label label-primary">edit image</a> <a
+        href="{% url 'image_delete' image.id %}" class="label label-danger">delete image</a>
 
 <h4>Tags</h4>
 <p>
@@ -20,16 +21,16 @@
 <hr/>
 
 <h4>Related: <strong>by tag</strong></h4>
-<div class="row">
-    {% for image in related_images  %}
-        <div class="col-sm-2">
+<ul class="small-block-grid-6">
+    {% for image in related_images %}
+        <li>
             {% thumbnail image.image '100x100' crop='center' as im %}
-                <a href="{% url 'image' pk=image.id  %}" class="thumbnail"><img src="{{ im.url }}" alt=""/></a>
+                <a href="{% url 'image' pk=image.id %}" class="thumbnail"><img src="{{ im.url }}" alt=""/></a>
             {% endthumbnail %}
-        </div>
+        </li>
     {% empty %}
-        <div class="col-sm-12">
+        <li>
             <p>There are currently no related images.</p>
-        </div>
+        </li>
     {% endfor %}
-</div>
+</ul>

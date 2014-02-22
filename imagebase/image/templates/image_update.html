@@ -3,20 +3,24 @@
 
 {% block main %}
 
-    <h3 class="heading">Edit Image{% if image.title %}: <strong>{{ image.title }}</strong>{% endif %}</h3>
+    <h2 class="heading">Edit Image{% if image.title %}: <strong>{{ image.title }}</strong>{% endif %}</h2>
 
     {% thumbnail image.image "150" crop="center" as im %}
-        <figure class="main_image_container">
+        <div class="main_image_container">
             <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="" class="main_image"/>
-        </figure>
+        </div>
     {% endthumbnail %}
 
-    <form action="" role='form' method="post" class="update_form" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form }}
-        {% buttons %}
-            <button type="submit" class="btn btn-primary">Update</button> <a href="{% url 'image' pk=image.id %}">Cancel</a>
-        {% endbuttons %}
-    </form>
+    <div class="row">
+        <div class="medium-6 columns">
+            <form action="" role='form' method="post" class="update_form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form }}
+                <hr/>
+                <button type="submit" class="">Update</button> <a href="{% url 'image' pk=image.id %}">Cancel</a>
+            </form>
+        </div>
+    </div>
+
 
 {% endblock %}
