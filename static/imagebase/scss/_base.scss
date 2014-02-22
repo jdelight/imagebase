@@ -12,3 +12,8 @@ h1, h2 {
     display: block;
     font-size: rem-calc(12);
 }
+
+
+.pjax-container:empty {
+    display: none;
+}
