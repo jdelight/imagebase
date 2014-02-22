@@ -24,8 +24,8 @@ class SettingsTests(ImagebaseLiveServerTestCase):
         image_attributes_id = image_attributes.find_element_by_class_name('attr_id').text
         image_attributes_tags = image_attributes.find_element_by_class_name('attr_tags').text
 
-        self.assertEqual('title: image title', image_attributes_title)
-        self.assertEqual('id: 1', image_attributes_id)
+        self.assertEqual('TITLE\nimage title', image_attributes_title)
+        self.assertEqual('ID\n1', image_attributes_id)
         self.assertIn('tag1', image_attributes_tags)
         self.assertIn('tag2', image_attributes_tags)
 
@@ -62,7 +62,7 @@ class SettingsTests(ImagebaseLiveServerTestCase):
         image_attributes_id = image_attributes.find_element_by_class_name('attr_id').text
         image_attributes_tags = image_attributes.find_element_by_class_name('attr_tags').text
 
-        self.assertEqual('id: 1', image_attributes_id)
+        self.assertEqual('ID\n1', image_attributes_id)
         self.assertIn('tag1', image_attributes_tags)
         self.assertIn('tag2', image_attributes_tags)
 
