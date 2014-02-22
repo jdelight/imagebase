@@ -1,7 +1,7 @@
 // hacked jquery to add a sendDelay property
 $.ajaxSetup({
-    sendDelay: 2000,
-    timeout: 3000
+    sendDelay: 1000,
+    timeout: 2000
 });
 
 var ImagebaseRouter = Backbone.Router.extend({
@@ -12,7 +12,8 @@ var ImagebaseRouter = Backbone.Router.extend({
 
     viewImageDetail: function(id){
         console.log('load image %s', id);
-        $('#image-detail-container').load('/image/'+id+'/');
+        //$('#image-detail-container').load('/image/'+id+'/');
+        $('#image-detail-container').load('/image/'+id+'/content/');
     }
 
 });

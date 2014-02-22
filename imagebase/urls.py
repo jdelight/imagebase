@@ -18,6 +18,7 @@ urlpatterns = patterns('',
 
     url(r'^$', DashboardView.as_view(), name='dashboard'),
     url(r'^upload/$', UploadView.as_view(), name='upload'),
+    url(r'^image/(?P<pk>\d+)/content/$', ImageView.as_view(template_name='image_content.html'), name='image_content'),
     url(r'^image/(?P<pk>\d+)/$', ImageView.as_view(), name='image'),
     url(r'^image/(?P<pk>\d+)/update/$', ImageUpdateView.as_view(), name='image_update'),
     url(r'^image/(?P<pk>\d+)/delete/$', ImageDeleteView.as_view(), name='image_delete'),
