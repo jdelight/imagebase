@@ -1,7 +1,7 @@
 var PageData = Backbone.Model.extend({
     url: '/dashboard/data/'
 });
-
+var useReplaceState = false;
 var ImagebaseRouter = Backbone.Router.extend({
 
     routes: {
@@ -11,8 +11,8 @@ var ImagebaseRouter = Backbone.Router.extend({
     },
 
     'viewDashboard': function(){
-        $('#image-detail-container').empty();
-        $('#image-master-container').removeClass('medium-8').addClass('medium-12');
+        imagebaseRouter.resetView();
+        useReplaceState = false;
     },
 
     'updateImage': function(id){
@@ -25,6 +25,7 @@ var ImagebaseRouter = Backbone.Router.extend({
         $(document).on('closed', '[data-reveal]', function () {
             imagebaseRouter.navigate(imageUrl, {trigger: true});
         });
+        useReplaceState = true;
 
     },
 
@@ -32,11 +33,20 @@ var ImagebaseRouter = Backbone.Router.extend({
         var imageData = imageUrls[id],
             imageContentUrl = imageData.contentUrl;
         console.log('load image %s from %s', id, imageContentUrl);
-        $('#modal').foundation('reveal', 'close');
         $('#image-detail-container').load(imageContentUrl, null, function(){
             $('#image-master-container').removeClass('medium-12').addClass('medium-8');
         });
+        useReplaceState = true;
+    },
+
+    'resetView': function(){
+        $(document).off('closed');
+        $('#modal').foundation('reveal', 'close');
+        $('#image-detail-container').empty();
+        $('#image-master-container').addClass('medium-12').removeClass('medium-8');
     }
+
+
 
 });
 
@@ -51,14 +61,18 @@ $(function(){
     $('main').on('click', 'a[data-pjax]', function(e){
         e.preventDefault();
         e.stopPropagation();
-        // console.log('e.currentTarget:', e.currentTarget);
-        imagebaseRouter.navigate(e.currentTarget.pathname, {trigger: true});
+        console.log('useReplaceState:', useReplaceState);
+        console.log('e.currentTarget:', e.currentTarget);
+        imagebaseRouter.navigate(e.currentTarget.pathname, {trigger: true, replace: useReplaceState});
     });
 
     pageData.fetch({
         success: function(model){
             imageUrls = model.get('images');
-            console.log('imageUrls:', imageUrls);
+            console.log('window.location.pathname:', window.location.pathname);
+            if (window.location.pathname === '/'){
+                history.replaceState(null, null, '/dashboard/');
+            }
             Backbone.history.start({pushState: true, root:'/dashboard/'});
         },
         error: function(e){
