@@ -6,7 +6,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 
-from core.views import DashboardView
+from core.views import DashboardView, DashboardDataView
 from upload.views import UploadView
 from image.views import ImageView, ImageTagView, ImageUpdateView, ImageDeleteView
 from prefs.views import SettingsView
@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$', DashboardView.as_view(), name='dashboard'),
+    url(r'^dashboard/data/$', DashboardDataView.as_view(), name='dashboard_data'),
     url(r'^dashboard/(.*?)$', DashboardView.as_view(), name='dashboard'),
     url(r'^upload/$', UploadView.as_view(), name='upload'),
     url(r'^image/(?P<pk>\d+)/content/$', ImageView.as_view(template_name='image_content.html'), name='image_content'),
