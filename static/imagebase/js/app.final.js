@@ -2,7 +2,7 @@ var ImagebaseRouter = Backbone.Router.extend({
 
     routes: {
         '': 'viewDashboard',
-        'image/:id/': 'viewImageDetail'
+        'image/:id/': 'viewImage'
     },
 
     'viewDashboard': function(){
@@ -10,7 +10,7 @@ var ImagebaseRouter = Backbone.Router.extend({
         $('#image-master-container').removeClass('medium-8').addClass('medium-12');
     },
 
-    'viewImageDetail': function(id){
+    'viewImage': function(id){
         var imageContentUrl = '/image/' + id + '/content/';
         console.log('load image %s from %s', id, imageContentUrl);
         $('#image-detail-container').load(imageContentUrl, null, function(){
