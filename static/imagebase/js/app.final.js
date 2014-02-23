@@ -1,12 +1,18 @@
 var ImagebaseRouter = Backbone.Router.extend({
 
     routes: {
+        '': 'viewDashboard',
         'image/:id/': 'viewImageDetail'
+    },
+
+    'viewDashboard': function(){
+        $('#image-detail-container').empty();
+        $('#image-master-container').removeClass('medium-8').addClass('medium-12');
     },
 
     'viewImageDetail': function(id){
         var imageContentUrl = '/image/' + id + '/content/';
-        console.log('load image %s:',id, imageContentUrl);
+        console.log('load image %s from %s', id, imageContentUrl);
         $('#image-detail-container').load(imageContentUrl, null, function(){
             $('#image-master-container').removeClass('medium-12').addClass('medium-8');
         });
@@ -22,10 +28,10 @@ $(function(){
     $('a[data-pjax]').on('click', function(e){
         e.preventDefault();
         e.stopPropagation();
-        console.log('e.currentTarget.pathname:', e.currentTarget.pathname);
         imagebaseRouter.navigate(e.currentTarget.pathname, {trigger: true});
     });
 
-    Backbone.history.start({pushState: true});
+    Backbone.history.start({pushState: true, root:'/dashboard/'});
 
 });
+
