@@ -37,6 +37,7 @@ var ImagebaseRouter = Backbone.Router.extend({
         imagebaseRouter.resetView();
         $('#image-detail-container').load(imageContentUrl, null, function(){
             $('#image-master-container').removeClass('medium-12').addClass('medium-8');
+            updatePanelContent(id);
         });
         useReplaceState = true;
     },
@@ -50,6 +51,18 @@ var ImagebaseRouter = Backbone.Router.extend({
 
 
 });
+
+function updatePanelContent(id){
+    var $panelContainer = $('.image-panel[data-pk='+id+']');
+    console.log('panelContainer:', $panelContainer);
+    $panelContainer.load(imageUrls[id].panelUrl, null, function(){
+        console.log('updated panel %s', id, this);
+        $panelContainer.addClass('updated');
+        setTimeout(function(){
+            $panelContainer.removeClass('updated');
+        }, 1000);
+    });
+}
 
 
 var imagebaseRouter = new ImagebaseRouter(),
