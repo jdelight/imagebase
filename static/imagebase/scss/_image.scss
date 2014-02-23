@@ -9,6 +9,9 @@
 .image-grid {
     li {
 
+        &.updated .panel {
+            background-color: lightgreen;
+        }
 
         a {
             display: block;
@@ -20,6 +23,12 @@
             border: none;
             padding-top: 4px;
             padding-bottom: 8px;
+            -webkit-transition: background-color 0.8s;
+            -moz-transition: background-color 0.8s;
+            -ms-transition: background-color 0.8s;
+            -o-transition: background-color 0.8s;
+            transition: background-color 0.8s;
+
         }
     }
 }
