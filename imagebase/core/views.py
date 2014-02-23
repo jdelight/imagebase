@@ -36,7 +36,8 @@ class DashboardDataView(DashboardView):
             data['images'][image.id] = {
                 'viewUrl': image.get_absolute_url(),
                 'contentUrl': reverse('image_content', args=(image.id,)),
-                'updateUrl': reverse('image_update_content', args=(image.id,))
+                'updateUrl': reverse('image_update_content', args=(image.id,)),
+                'panelUrl': reverse('image_panel_content', args=(image.id,))
             }
 
         return HttpResponse(json.dumps(data))
