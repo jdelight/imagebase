@@ -1,3 +1,7 @@
+var PageData = Backbone.Model.extend({
+    url: '/dashboard/data/'
+});
+
 var ImagebaseRouter = Backbone.Router.extend({
 
     routes: {
@@ -13,19 +17,20 @@ var ImagebaseRouter = Backbone.Router.extend({
 
     'updateImage': function(id){
         console.log('update image %s:', id);
-        var imageUpdateUrl = '/image/' + id + '/update/content/';
-        var imageUrl = '/image/' + id + '/';
-        var router = this;
+        var imageData = imageUrls[id],
+            imageUpdateUrl = imageData.updateUrl,
+            imageUrl = imageData.viewUrl;
 
         $('#modal').foundation('reveal', 'open', imageUpdateUrl);
         $(document).on('closed', '[data-reveal]', function () {
-            router.navigate(imageUrl, {trigger: true});
+            imagebaseRouter.navigate(imageUrl, {trigger: true});
         });
 
     },
 
     'viewImage': function(id){
-        var imageContentUrl = '/image/' + id + '/content/';
+        var imageData = imageUrls[id],
+            imageContentUrl = imageData.contentUrl;
         console.log('load image %s from %s', id, imageContentUrl);
         $('#modal').foundation('reveal', 'close');
         $('#image-detail-container').load(imageContentUrl, null, function(){
@@ -36,9 +41,12 @@ var ImagebaseRouter = Backbone.Router.extend({
 });
 
 
+var imagebaseRouter = new ImagebaseRouter(),
+    pageData = new PageData(),
+    imageUrls;
+
 $(function(){
 
-    var imagebaseRouter = new ImagebaseRouter();
 
     $('main').on('click', 'a[data-pjax]', function(e){
         e.preventDefault();
@@ -47,7 +55,19 @@ $(function(){
         imagebaseRouter.navigate(e.currentTarget.pathname, {trigger: true});
     });
 
-    Backbone.history.start({pushState: true, root:'/dashboard/'});
+    pageData.fetch({
+        success: function(model){
+            imageUrls = model.get('images');
+            console.log('imageUrls:', imageUrls);
+            Backbone.history.start({pushState: true, root:'/dashboard/'});
+        },
+        error: function(e){
+            console.log('error:', e);
+        }
+    });
+
+
+
 
 });
 
