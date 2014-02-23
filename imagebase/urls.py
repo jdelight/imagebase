@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$', DashboardView.as_view(), name='dashboard'),
+    url(r'^dashboard/(.*?)$', DashboardView.as_view(), name='dashboard'),
     url(r'^upload/$', UploadView.as_view(), name='upload'),
     url(r'^image/(?P<pk>\d+)/content/$', ImageView.as_view(template_name='image_content.html'), name='image_content'),
     url(r'^image/(?P<pk>\d+)/$', ImageView.as_view(), name='image'),
