@@ -2,12 +2,25 @@ var ImagebaseRouter = Backbone.Router.extend({
 
     routes: {
         '': 'viewDashboard',
-        'image/:id/': 'viewImageDetail'
+        'image/:id/': 'viewImageDetail',
+        'image/:id/update/': 'updateImage'
     },
 
     'viewDashboard': function(){
         $('#image-detail-container').empty();
         $('#image-master-container').removeClass('medium-8').addClass('medium-12');
+    },
+
+    'updateImage': function(id){
+        console.log('update image %s:', id);
+        var imageUpdateUrl = '/image/' + id + '/update/content/';
+        var imageUrl = '/image/' + id + '/';
+        var router = this;
+        $('#modal').foundation('reveal', 'open', imageUpdateUrl);
+        $(document).on('closed', '[data-reveal]', function () {
+            router.navigate(imageUrl, {trigger: false});
+        });
+
     },
 
     'viewImageDetail': function(id){
@@ -25,9 +38,10 @@ $(function(){
 
     var imagebaseRouter = new ImagebaseRouter();
 
-    $('a[data-pjax]').on('click', function(e){
+    $('main').on('click', 'a[data-pjax]', function(e){
         e.preventDefault();
         e.stopPropagation();
+        // console.log('e.currentTarget:', e.currentTarget);
         imagebaseRouter.navigate(e.currentTarget.pathname, {trigger: true});
     });
 
