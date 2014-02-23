@@ -41,11 +41,12 @@
 
             <main>
                 {% block main %}{% endblock %}
+                <div id="modal" class="reveal-modal" data-reveal></div>
             </main>
         </div>
     </div>
 </div>
-<div id="modal" class="reveal-modal" data-reveal></div>
+
 <script src="{% static 'imagebase/bower_components/jquery/dist/jquery.min.js' %}"></script>
 <script src="{% static 'imagebase/bower_components/foundation/js/foundation.min.js' %}"></script>
 <script src="{% static 'imagebase/bower_components/underscore/underscore.js' %}"></script>
