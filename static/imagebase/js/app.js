@@ -12,6 +12,7 @@ var ImagebaseRouter = Backbone.Router.extend({
 
     'viewDashboard': function(){
         imagebaseRouter.resetView();
+        $('#image-master-container').addClass('medium-12').removeClass('medium-8');
         useReplaceState = false;
     },
 
@@ -33,6 +34,7 @@ var ImagebaseRouter = Backbone.Router.extend({
         var imageData = imageUrls[id],
             imageContentUrl = imageData.contentUrl;
         console.log('load image %s from %s', id, imageContentUrl);
+        imagebaseRouter.resetView();
         $('#image-detail-container').load(imageContentUrl, null, function(){
             $('#image-master-container').removeClass('medium-12').addClass('medium-8');
         });
@@ -43,7 +45,6 @@ var ImagebaseRouter = Backbone.Router.extend({
         $(document).off('closed');
         $('#modal').foundation('reveal', 'close');
         $('#image-detail-container').empty();
-        $('#image-master-container').addClass('medium-12').removeClass('medium-8');
     }
 
 
