@@ -5,6 +5,6 @@ local_settings.py
 *.DS_Store
 .coverage
 htmlcov/
-ymedia/
+media/
 .idea/
 *.iml
