@@ -5,6 +5,7 @@
     <title>Imagebase: {% block pagetitle %}{% endblock %}</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{% static 'imagebase/css/app.css' %}"/>
+    <script src="{% static  'imagebase/bower_components/modernizr/modernizr.js' %}"></script>
 </head>
 <body>
 
@@ -13,14 +14,14 @@
         <nav class="top-bar" data-topbar>
             <ul class="title-area">
                 <li class="name">
-                    <h1><a href="/" data-pjax>Imagebase</a></h1>
+                    <h1><a href="/">Imagebase</a></h1>
                 </li>
                 <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
             </ul>
 
             <section class="top-bar-section">
                 <ul class="right">
-                    <li><a href="/" data-pjax>Dashboard</a></li>
+                    <li><a href="/dashboard/">Dashboard</a></li>
                     <li><a href="/upload/">Upload</a></li>
                     <li><a href="/tags/">Tags</a></li>
                     <li><a href="/settings/1/">Settings</a></li>
@@ -44,5 +45,12 @@
         </div>
     </div>
 </div>
+
+<script src="{% static 'imagebase/bower_components/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'imagebase/bower_components/foundation/js/foundation.min.js' %}"></script>
+<script src="{% static 'imagebase/bower_components/underscore/underscore.js' %}"></script>
+<script src="{% static 'imagebase/bower_components/backbone/backbone.js' %}"></script>
+<script src="{% static 'imagebase/js/plugins.js' %}"></script>
+<script src="{% static 'imagebase/js/app.js' %}"></script>
 </body>
 </html>
