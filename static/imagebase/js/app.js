@@ -21,7 +21,7 @@ var ImagebaseRouter = Backbone.Router.extend({
             imageUpdateUrl = imageData.updateUrl,
             imageUrl = imageData.viewUrl;
 
-        $('#modal').foundation('reveal', 'open', imageUpdateUrl);
+        $('#modal').foundation('reveal', 'open', {url: imageUpdateUrl, animation_speed: 0});
         $(document).on('closed', '[data-reveal]', function () {
             imagebaseRouter.navigate(imageUrl, {trigger: true});
         });
