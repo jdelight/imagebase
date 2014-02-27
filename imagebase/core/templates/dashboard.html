@@ -18,7 +18,13 @@
                 {% endfor %}
             </ul>
         </div>
-        <div id="image-detail-container" data-sticky class="medium-4 columns pjax-container panel"></div>
+        {% spaceless %}
+        <div data-sticky class="medium-4 columns card">
+            <div class="side pjax-container panel front" id="image-detail-container"></div>
+            <div class="side pjax-container panel back" id="image-update-container"></div>
+        </div>
+        {% endspaceless %}
+
     </div>
 
 

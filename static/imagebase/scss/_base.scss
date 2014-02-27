@@ -13,7 +13,13 @@ h1, h2 {
     font-size: rem-calc(12);
 }
 
-
 .pjax-container:empty {
     display: none;
+}
+
+[for='id_image'] + a {
+    width: 220px;
+    word-wrap: break-word;
+    display: block;
+    font-size: rem-calc(12);
 }

@@ -37,6 +37,7 @@ class DashboardDataView(DashboardView):
                 'viewUrl': image.get_absolute_url(),
                 'contentUrl': reverse('image_content', args=(image.id,)),
                 'updateUrl': reverse('image_update_content', args=(image.id,)),
+                'deleteUrl': reverse('image_delete_content', args=(image.id,)),
                 'panelUrl': reverse('image_panel_content', args=(image.id,))
             }
 

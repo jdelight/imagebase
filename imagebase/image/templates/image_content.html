@@ -9,7 +9,9 @@
     {% endthumbnail %}
 </p>
 <a href="{% url 'image_update' image.id %}" class="label success" data-pjax>edit image</a>
-<a href="{% url 'image_delete' image.id %}" class="label alert">delete image</a>
+<a href="{% url 'image_delete' image.id %}" class="label alert" data-pjax>delete image</a>
+
+<!--<a href="{% url 'dashboard' %}" class="" data-pjax>close</a> -->
 
 <h4>Tags</h4>
 <p>

@@ -7,7 +7,8 @@ var ImagebaseRouter = Backbone.Router.extend({
     routes: {
         '': 'viewDashboard',
         'image/:id/': 'viewImage',
-        'image/:id/update/': 'updateImage'
+        'image/:id/update/': 'updateImage',
+        'image/:id/delete/': 'deleteImage'
     },
 
     'viewDashboard': function(){
@@ -17,35 +18,63 @@ var ImagebaseRouter = Backbone.Router.extend({
     },
 
     'updateImage': function(id){
-        console.log('update image %s:', id);
         var imageData = imageUrls[id],
-            imageUpdateUrl = imageData.updateUrl,
-            imageUrl = imageData.viewUrl;
+            imageUpdateUrl = imageData.updateUrl;
 
-        $('#modal').foundation('reveal', 'open', imageUpdateUrl);
-        $(document).on('closed', '[data-reveal]', function () {
-            imagebaseRouter.navigate(imageUrl, {trigger: true});
+        $('#image-update-container').load(imageUpdateUrl, null, function(){
+            imagebaseRouter.prepGridForSidePanel();
+            $(this).parent().removeClass('returned').addClass('flipped');
+
+
+            $(this).find('form').on('submit', function(e){
+                e.stopPropagation();
+                e.preventDefault();
+                $(this).closest('.pjax-container').load(imageUpdateUrl, $(this).serializeArray(), function(){
+                    updatePanelContent(id);
+                });
+
+            });
         });
         useReplaceState = true;
+    },
 
+    'deleteImage': function(id){
+        var imageData = imageUrls[id],
+            imageDeleteUrl = imageData.deleteUrl;
+
+        $('#image-update-container').load(imageDeleteUrl, null, function(){
+            imagebaseRouter.prepGridForSidePanel();
+            $(this).parent().removeClass('returned').addClass('flipped');
+
+//            $(this).find('form').on('submit', function(e){
+//                e.stopPropagation();
+//                e.preventDefault();
+//                // response could container JavaScript to remove representation
+//            });
+        });
+        useReplaceState = true;
     },
 
     'viewImage': function(id){
         var imageData = imageUrls[id],
             imageContentUrl = imageData.contentUrl;
-        console.log('load image %s from %s', id, imageContentUrl);
         imagebaseRouter.resetView();
         $('#image-detail-container').load(imageContentUrl, null, function(){
-            $('#image-master-container').removeClass('medium-12').addClass('medium-8');
-            //updatePanelContent(id);
+            imagebaseRouter.prepGridForSidePanel();
+            updatePanelContent(id);
+            $(this).parent().removeClass('flipped').addClass('returned');
         });
-        useReplaceState = true;
+        useReplaceState = false;
     },
 
     'resetView': function(){
         $(document).off('closed');
         $('#modal').foundation('reveal', 'close');
         $('#image-detail-container').empty();
+    },
+
+    'prepGridForSidePanel': function(){
+        $('#image-master-container').removeClass('medium-12').addClass('medium-8');
     }
 
 
@@ -54,14 +83,12 @@ var ImagebaseRouter = Backbone.Router.extend({
 
 function updatePanelContent(id){
     var $panelContainer = $('.image-panel[data-pk='+id+']');
-    console.log('panelContainer:', $panelContainer);
-//    $panelContainer.load(imageUrls[id].panelUrl, null, function(){
-//        console.log('updated panel %s', id, this);
-//        $panelContainer.addClass('updated');
-//        setTimeout(function(){
-//            $panelContainer.removeClass('updated');
-//        }, 1000);
-//    });
+    $panelContainer.load(imageUrls[id].panelUrl, null, function(){
+        $panelContainer.addClass('updated');
+        setTimeout(function(){
+            $panelContainer.removeClass('updated');
+        }, 1000);
+    });
 }
 
 
@@ -75,27 +102,20 @@ $(function(){
     $('main').on('click', 'a[data-pjax]', function(e){
         e.preventDefault();
         e.stopPropagation();
-        console.log('useReplaceState:', useReplaceState);
-        console.log('e.currentTarget:', e.currentTarget);
         imagebaseRouter.navigate(e.currentTarget.pathname, {trigger: true, replace: useReplaceState});
     });
 
     pageData.fetch({
         success: function(model){
             imageUrls = model.get('images');
-            console.log('window.location.pathname:', window.location.pathname);
             if (window.location.pathname === '/'){
                 history.replaceState(null, null, '/dashboard/');
             }
             Backbone.history.start({pushState: true, root:'/dashboard/'});
         },
         error: function(e){
-            console.log('error:', e);
         }
     });
-
-
-
 
 });
 
