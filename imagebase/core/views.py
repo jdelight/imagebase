@@ -1,4 +1,7 @@
+import json
 from django.views.generic import ListView
+from django.shortcuts import HttpResponse
+from django.core.urlresolvers import reverse
 
 from image.models import Image
 from prefs.models import ImagebaseSettings
@@ -20,3 +23,22 @@ class DashboardView(ListView):
         context = super(DashboardView, self).get_context_data(**kwargs)
         context['imagebase_settings'] = self.get_imagebase_settings()
         return context
+
+class DashboardDataView(DashboardView):
+
+    def get(self, *args, **kwargs):
+
+        data = {
+            'images': {}
+        }
+
+        for image in self.get_queryset():
+            data['images'][image.id] = {
+                'viewUrl': image.get_absolute_url(),
+                'contentUrl': reverse('image_content', args=(image.id,)),
+                'updateUrl': reverse('image_update_content', args=(image.id,)),
+                'deleteUrl': reverse('image_delete_content', args=(image.id,)),
+                'panelUrl': reverse('image_panel_content', args=(image.id,))
+            }
+
+        return HttpResponse(json.dumps(data))

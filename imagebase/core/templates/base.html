@@ -20,7 +20,7 @@
 
             <section class="top-bar-section">
                 <ul class="right">
-                    <li><a href="/">Dashboard</a></li>
+                    <li><a href="/dashboard/">Dashboard</a></li>
                     <li><a href="/upload/">Upload</a></li>
                     <li><a href="/tags/">Tags</a></li>
                     <li><a href="/settings/1/">Settings</a></li>
@@ -40,9 +40,17 @@
 
             <main>
                 {% block main %}{% endblock %}
+                <div id="modal" class="reveal-modal" data-reveal></div>
             </main>
         </div>
     </div>
 </div>
+
+<script src="{% static 'imagebase/bower_components/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'imagebase/bower_components/foundation/js/foundation.min.js' %}"></script>
+<script src="{% static 'imagebase/bower_components/underscore/underscore.js' %}"></script>
+<script src="{% static 'imagebase/bower_components/backbone/backbone.js' %}"></script>
+<script src="{% static 'imagebase/js/plugins.js' %}"></script>
+<script src="{% static 'imagebase/js/app.js' %}"></script>
 </body>
 </html>

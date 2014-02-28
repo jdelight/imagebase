@@ -10,35 +10,21 @@
         <div class="medium-12 columns" id="image-master-container">
             <ul class="small-block-grid-2 medium-block-grid-3 image-grid">
                 {% for image in image_list %}
-                    <li>
-                        <a href="{% url 'image' pk=image.id %}" data-pjax class="thumbnail">
-                        {% thumbnail image.image '320x240' crop='center' as im %}
-
-                                <img src="{{ im.url }}" alt=""/>
-
-                        {% endthumbnail %}
-
-                        <div class="panel">
-                            <ul id="image_{{ image.id }}_attributes" class="no-bullet image-attributes">
-                                {% if imagebase_settings.show_id %}
-                                    <li class="attr_id"><small>id</small> {{ image.id }}</li>
-                                {% endif %}
-                                {% if imagebase_settings.show_title %}
-                                    <li class="attr_title"><small>title</small> {{ image.title }}</li>
-                                {% endif %}
-                                {% if imagebase_settings.show_tags %}
-                                    <li class="attr_tags"><small>tags</small> {{ image.tags.names|join:' ' }}</li>
-                                {% endif %}
-                            </ul>
-                        </div>
-                        </a>
+                    <li class="image-panel" data-pk="{{ image.id }}">
+                        {% include 'image_panel_content.html' %}
                     </li>
                 {% empty %}
                     <li><a href="{% url 'upload' %}">Upload an image</a></li>
                 {% endfor %}
             </ul>
         </div>
-        <div id="image-detail-container" data-sticky class="medium-4 columns pjax-container panel"></div>
+        {% spaceless %}
+        <div data-sticky class="medium-4 columns card">
+            <div class="side pjax-container panel front" id="image-detail-container"></div>
+            <div class="side pjax-container panel back" id="image-update-container"></div>
+        </div>
+        {% endspaceless %}
+
     </div>
 
 

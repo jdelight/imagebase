@@ -1,6 +1,17 @@
+#image-master-container {
+    -webkit-transition: width 0.6s;
+    -moz-transition: width 0.6s;
+    -ms-transition: width 0.6s;
+    -o-transition: width 0.6s;
+    transition: width 0.6s;
+}
+
 .image-grid {
     li {
 
+        &.updated .panel {
+            background-color: lightgreen;
+        }
 
         a {
             display: block;
@@ -12,6 +23,12 @@
             border: none;
             padding-top: 4px;
             padding-bottom: 8px;
+            -webkit-transition: background-color 0.8s;
+            -moz-transition: background-color 0.8s;
+            -ms-transition: background-color 0.8s;
+            -o-transition: background-color 0.8s;
+            transition: background-color 0.8s;
+
         }
     }
 }
@@ -32,4 +49,8 @@
         font-weight: 600;
         margin-top: 10px;
     }
+}
+
+#image-update-container .medium-8 {
+    width: auto;
 }

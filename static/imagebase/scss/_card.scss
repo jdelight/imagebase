@@ -1,0 +1,60 @@
+body {
+    -webkit-perspective: 1000px;
+}
+
+.card .front:hover {
+    box-shadow: rgba(0,0,0,0.1) 0 20px 30px -5px;
+}
+
+.card {
+    transition: -webkit-transform 0.4s, width 0.2s 0.1s, height 0.3s 0.1s;
+    transition-timing-function: ease;
+    cursor: pointer;
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform:  rotateY(0deg);
+}
+
+.card .side {
+    min-height: 600px;
+    background: #222;
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    transition: -webkit-transform 0.2s, box-shadow 0.2s;
+    transition-timing-function: ease;
+}
+
+.card .front {
+}
+
+.card .back {
+    background: #efefef;
+    * {
+        color: #333;
+    }
+    h2 {
+        font-size: rem-calc(16);
+    }
+    -webkit-transform: rotateY(-180deg);
+    box-shadow: rgba(0,0,0,0.3) 0 10px 30px -5px;
+}
+
+.card.flipped {
+    -webkit-transform: rotateY(-180deg);
+    .front {
+        z-index: 100;
+    }
+
+    .back {
+        z-index: 200;
+    }
+}
+
+
+.card.returned {
+    .back label {
+        display: none;
+    }
+    -webkit-transform: translateX(0px) translateY(0px)  rotateY(0deg);
+    transition: -webkit-transform 0.4s, width 0.1s, height 0.1s;
+}
