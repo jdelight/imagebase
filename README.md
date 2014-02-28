@@ -16,4 +16,13 @@ Each branch builds on the next to improve the functionality / UX:
 * sync: adds updates for multiple areas of the page to keep them in sync
 * final: adds 3D transforms for editing/viewing an image
 
+Setting up
+----------
+This is a Django application so setup involves the typical steps.
+
+* create a virtualenv
+* pip install -r requirements.txt
+* setup a database and run python ./manage.py syncdb
+* run python ./manage.py runserver
+
 
